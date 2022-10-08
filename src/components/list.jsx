@@ -10,8 +10,10 @@ import { Button } from 'semantic-ui-react'
 
 export default function List() {
     const [TaskData, setTaskData] = useState([]);
+    const [complete, setComplete] = useState(false);
+
     const deleteData = (id) => {
-        axios.delete(`https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/`+id)
+        axios.delete(`https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/` + id)
     }
 
     const editData = (data) => {
@@ -32,18 +34,8 @@ export default function List() {
             {TaskData.map((data) => {
                 return (
                     <li>
-                        <button onClick={() => {
-                            this.setState(
-                                () => {
-                                    return {
-                                        completed: true
-                                    }
-                                },
-                                () => {
-                                    console.log('Completed Task')
-                                }
-                            );
-                        }}>
+                        <button onClick={() => setCheck((prevCheck) => !prevCheck)}>
+                            {complete.toString()}
                             <i className="completeTask fa fa-check"></i>
                         </button>
                         <Link to='/update'>

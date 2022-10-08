@@ -19,7 +19,7 @@ ul.no-bullets {
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(32deg, rgba(54,22,57,1) 0%, rgba(50,9,121,1) 30%, rgba(40,124,148,1) 57%, rgba(49,145,65,1) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
