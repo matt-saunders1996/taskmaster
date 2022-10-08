@@ -10,6 +10,10 @@ import { Button } from 'semantic-ui-react'
 
 export default function List() {
     const [TaskData, setTaskData] = useState([]);
+    const deleteData = (id) => {
+        axios.delete(`https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/`+id)
+    }
+
     const editData = (data) => {
         let { description, date, completed, id } = data;
         localStorage.setItem('Description', description);
@@ -50,7 +54,7 @@ export default function List() {
                         </Link>
                         <span> {data.description} </span>
                         <span> {data.date} </span>
-                        <button>
+                        <button onClick={() => deleteData(data.id)}>
                             <i className="deleteTask fa fa-trash"></i>
                         </button>
                     </li>
