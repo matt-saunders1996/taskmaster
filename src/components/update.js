@@ -8,7 +8,7 @@ export default function Update() {
     const [date, setDate] = useState('');
     const [completed, setCompleted] = useState();
     const dbUpdate = () => {
-        axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/${id}', {
+        axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/'+id, { 
             description,
             date
         })
