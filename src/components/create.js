@@ -1,10 +1,7 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Component } from 'react';
 
-export default function List() {
+export default function Create() {
     const [description, setDesc] = useState('');
     const [date, setDate] = useState('');
     const [completed, setCompleted] = useState(false);

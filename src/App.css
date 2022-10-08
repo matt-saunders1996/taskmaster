@@ -1,5 +1,7 @@
 /* My CSS */
-
+ul.no-bullets {
+  list-style-type: none; 
+}
 /* REACT Standard */
 .App {
   text-align: center;
