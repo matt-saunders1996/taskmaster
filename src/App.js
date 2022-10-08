@@ -1,12 +1,12 @@
-
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Component } from 'react';
 import { identifier } from '@babel/types';
-import Create from './components/create';
-// import List from './components/list';
-// import ListClassComp from './components/listClassComp';
-import { BrowserRouter, Route, Router, Switch } from 'react-router-dom';
 import axios from 'axios';
+// components
+import List from './components/list';
+import Create from './components/create';
+import Update from './components/update';
 
 
 class App extends Component {
@@ -33,44 +33,19 @@ class App extends Component {
 
   render() {
     return (
-      // <Router>
+      <Router>
         <div className="App">
           <header className="App-header">
             <h1>Taskmaster</h1>
             <Create />
-            {/* <ListClassComp/> */}
-            <ul className='no-bullets'>
-              {this.state.tasks.map((task) => {
-                return <li key={task.id}>
-                  <button onClick={() => {
-                    this.setState(
-                      () => {
-                        return {
-                          completed: true
-                        }
-                      },
-                      () => {
-                        console.log('Completed Task')
-                      }
-                    );
-                  }}>
-                    <i className="completeTask fa fa-check"></i>
-                  </button>
-                  <button onClick={() => { console.log('Edited Task') }}>
-                    <i className="editTask fa fa-pencil"></i>
-                  </button>
-                  <span> {task.description} </span>
-                  <span> {task.date} </span>
-                  <button>
-                    <i className="deleteTask fa fa-trash"></i>
-                  </button>
-                </li>
-              })
-              }
-            </ul>
+            <List/>
+            <Routes>
+            <Route path='/update' element={<Update/>} />
+            </Routes>
+  
           </header>
         </div >
-      // </Router>
+      </Router>
     );
   }
 }
