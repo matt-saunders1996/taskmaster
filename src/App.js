@@ -1,12 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Component } from 'react';
-import { identifier } from '@babel/types';
-import axios from 'axios';
 // components
 import List from './components/list';
 import Create from './components/create';
 import Update from './components/update';
+import Email from './components/email';
+
+import React from 'react';
 
 
 class App extends Component {
@@ -37,12 +38,13 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1>Taskmaster</h1>
+            <Email />
             <Create />
-            <List/>
+            <List />
             <Routes>
-            <Route path='/update' element={<Update/>} />
+              <Route path='/update' element={<Update />} />
             </Routes>
-  
+
           </header>
         </div >
       </Router>

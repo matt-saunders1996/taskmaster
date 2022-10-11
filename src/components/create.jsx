@@ -4,11 +4,9 @@ import axios from 'axios';
 export default function Create() {
     const [description, setDesc] = useState('');
     const [date, setDate] = useState('');
-    const [completed, setCompleted] = useState(false);
     const dbPost = () => {
         console.log(description);
         console.log(date);
-        console.log(completed);
         axios.post('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks', {
             description,
             date,

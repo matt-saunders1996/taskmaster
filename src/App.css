@@ -2,6 +2,11 @@
 ul.no-bullets {
   list-style-type: none; 
 }
+.completed {
+  color: green;
+  text-decoration: green;
+}
+
 /* REACT Standard */
 .App {
   text-align: center;

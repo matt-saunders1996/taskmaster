@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Create from './create';
+import { Link } from 'react-router-dom';
 
 export default function Update() {
     const [id, setID] = useState(null);
     const [description, setDesc] = useState('');
     const [date, setDate] = useState('');
-    const [completed, setCompleted] = useState();
     const dbUpdate = () => {
-        axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/'+id, { 
+        axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/' + id, {
             description,
             date
         })
     }
 
+    console.log('here');
+
     useEffect(() => {
         setDesc(localStorage.getItem('Description'));
         setDate(localStorage.getItem('Date'));
-        setCompleted(localStorage.getItem('Completed'))
         setID(localStorage.getItem('ID'))
+        console.log('desc local storage', localStorage.getItem('Description'));
     }, []);
 
     return (
@@ -37,11 +38,13 @@ export default function Update() {
                 min="2022-10-06"
                 max="2100-10-06"
             />
-            <button onClick={dbUpdate}>
-                <i
-                    className="fa fa-plus">
-                </i>
-            </button>
+            <Link to='/'>
+                <button onClick={dbUpdate}>
+                    <i
+                        className="fa fa-plus">
+                    </i>
+                </button>
+            </Link>
         </div>
     )
 }

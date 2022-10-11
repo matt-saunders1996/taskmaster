@@ -1,0 +1,19 @@
+<h1>between inputs</h1>
+            <input onChange={(e) => setDesc(e.target.value)}
+                type="text"
+                className="descTask"
+                placeholder="What is your task?"
+                value={description}
+            />
+            <input onChange={(e) => setDate(e.target.value)}
+                type="date"
+                className="newDate"
+                value={date}
+                min="2022-10-06"
+                max="2100-10-06"
+            />
+            <button onClick={dbUpdate}>
+                <i
+                    className="fa fa-plus">
+                </i>
+            </button>
