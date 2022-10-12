@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function Update() {
+export default function Update({reRender}) {
     const [id, setID] = useState(null);
     const [description, setDesc] = useState('');
     const [date, setDate] = useState('');
-    const dbUpdate = () => {
-        axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/' + id, {
+    const dbUpdate = async () => {
+       await axios.put('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/' + id, {
             description,
             date
-        })
+        });
+        reRender()
     }
 
     console.log('here');

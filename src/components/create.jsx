@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function Create() {
+export default function Create({reRender}) {
     const [description, setDesc] = useState('');
     const [date, setDate] = useState('');
-    const dbPost = () => {
+    const dbPost = async () => {
         console.log(description);
         console.log(date);
-        axios.post('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks', {
+        const completed = false;
+       await axios.post('https://6341338f20f1f9d7996dfc67.mockapi.io/tasks', {
             description,
             date,
             completed
-        })
+        });
+        reRender()
+
     }
 
     return (

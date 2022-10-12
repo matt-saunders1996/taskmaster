@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './list.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
-export default function List() {
-    const [TaskData, setTaskData] = useState([]);
-    const[renderIndex, setRenderIndex] = useState(1);
-
+export default function List({ taskList, reRender }) {
     const deleteData = async (id) => {
         await axios.delete(`https://6341338f20f1f9d7996dfc67.mockapi.io/tasks/` + id)
+        reRender()
 
-        setRenderIndex(renderIndex + 1);
     }
 
     const setCompleted = async (task) => {
-        const {description, date, id} = task;
+        const { description, date, id } = task;
         const completed = true;
 
         console.log(`date ${date}`);
@@ -25,9 +22,8 @@ export default function List() {
             description,
             date,
             completed
-        });
-
-        setRenderIndex(renderIndex + 1);
+        })
+        reRender();
     }
 
     const editData = (data) => {
@@ -38,53 +34,40 @@ export default function List() {
         localStorage.setItem('Completed', completed)
         localStorage.setItem('ID', id);
     }
-    // const setComplete = (data) => {
-    //     let { completed } = data;
-    //     localStorage.setItem('Completed', completed);
-    // }
-
-    useEffect(() => {
-        axios.get(`https://6341338f20f1f9d7996dfc67.mockapi.io/tasks`)
-            .then((response) => {
-                setTaskData(response.data);
-            }).then(() => {
-                console.log(`renderIndex: ${renderIndex}`)  
-                console.log(`Tasks: ${JSON.stringify(TaskData)}`)
-            })
-    }, [TaskData, renderIndex]);
-
-    // useEffect(() => {
-    //     setCompleted(localStorage.getItem('Completed'))
-    // }, []);
 
     return (
         <ul className='no-bullets'>
-            {TaskData.map((data) => {
+            {taskList.map((task) => {
                 return (
                     <li>
-                        {data.completed ? (
-                            <button><i className='fa fa-check completed'></i></button>
+                        {task.completed ? (
+                            <button
+                                className="btn btn-primary">
+                                <i className='fa fa-check completed'></i>
+                            </button>
                         ) : (
-                            <button onClick={() => setCompleted(data)}> 
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => setCompleted(task)}>
                                 Completed?
                             </button>
                         )}
                         <Link to='/update'>
                             <button
-                                onClick={() => editData(data)}>
+                                className="btn btn-primary"
+                                onClick={() => editData(task)}>
                                 <i className="editTask fa fa-pencil"></i>
                             </button>
                         </Link>
-                        <span> {data.description} </span>
-                        <span> {data.date} </span>
-                        <button onClick={() => deleteData(data.id)}>
+                        <span> {task.description} </span>
+                        <span> {task.date} </span>
+                        <button className="btn btn-primary"
+                            onClick={() => deleteData(task.id)}>
                             <i className="deleteTask fa fa-trash"></i>
                         </button>
                     </li>
                 )
             })}
-
         </ul>
-
     )
 }
