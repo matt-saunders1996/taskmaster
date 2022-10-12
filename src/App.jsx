@@ -29,13 +29,11 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <h1>Taskmaster</h1>
-          <Email />
           <Create reRender={() => { setRenderIndex(renderIndex + 1) }} />
           <List taskList={taskList} reRender={() => { setRenderIndex(renderIndex + 1) }} />
           <Routes>
             <Route path='/update' element={<Update reRender={() => { setRenderIndex(renderIndex + 1) }} />} />
           </Routes>
-
         </header>
       </div >
     </Router>

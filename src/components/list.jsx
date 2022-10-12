@@ -61,6 +61,7 @@ export default function List({ taskList, reRender }) {
                         </Link>
                         <span> {task.description} </span>
                         <span> {task.date} </span>
+                        
                         <button className="btn btn-primary"
                             onClick={() => deleteData(task.id)}>
                             <i className="deleteTask fa fa-trash"></i>
